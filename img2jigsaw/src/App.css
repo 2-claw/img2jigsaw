@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f3ef;
+  color: #111;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  background: #e9e8e2;
+  border: 2px solid #222;
+}
+
+.text {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111;
+  text-transform: uppercase;
+}
+
+.buttons-above {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.timer,
+.moves {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: #fff;
+  border: 1px solid #222;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.tabular-nums,
+.tab-nums {
+  font-family: "Courier New", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.text-400-a,
+.text-400-b {
+  display: inline-flex;
+  align-items: center;
+  color: #111;
+}
+
+.icon-btn,
+.restart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 2px 6px;
+  background: #e9e8e2;
+  color: #111;
+  border: 1px solid #222;
+  cursor: pointer;
+}
+
+.icon-btn:hover,
+.restart:hover {
+  background: #dddcd5;
+}
+
+.icon-btn:active,
+.restart:active {
+  background: #ccc;
+  border-color: #000;
+}
+
+.icon-btn:focus-visible,
+.restart:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 1px;
+}
+
