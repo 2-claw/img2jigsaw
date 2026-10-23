@@ -1,0 +1,30 @@
+
+.referenceImage {
+  width: 180px;
+  flex-shrink: 0;
+  padding: 10px;
+  background: #f5edcf;
+  border: 2px solid #54343b;
+  border-radius: 4px;
+  color: #54343b;
+}
+
+.referenceImage h3 {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+}
+
+.referenceImage img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid #76505a;
+}
+
+@media (max-width: 600px) {
+  .referenceImage {
+    width: 100%;
+    max-width: 220px;
+  }
+}

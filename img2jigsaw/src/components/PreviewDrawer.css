@@ -1,0 +1,73 @@
+.preview-btn.fixed {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5edcf;
+  color: #54343b;
+  border: 2px solid #54343b;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.preview-btn.fixed:hover {
+  background: #e8dcb8;
+}
+
+.preview-drawer.fixed {
+  position: fixed;
+  right: 16px;
+  bottom: 5rem;
+  z-index: 49;
+  width: clamp(200px, 40vw, 320px);
+  pointer-events: none;
+}
+
+.previewbox {
+  padding: 12px;
+  background: #f5edcf;
+  border: 2px solid #54343b;
+  border-radius: 5px;
+  color: #54343b;
+  pointer-events: auto;
+  transform: translateX(calc(100% + 1rem));
+  transition: transform 0.25s ease;
+}
+
+.previewbox.open {
+  transform: translateX(0);
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.preview-title {
+  color: #54343b;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.preview-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 1px solid #76505a;
+  border-radius: 3px;
+}
+
+@media (max-width: 480px) {
+  .preview-drawer.fixed {
+    width: min(260px, calc(100vw - 32px));
+  }
+}

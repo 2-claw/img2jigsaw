@@ -1,91 +1,64 @@
-* {
+.app {
+  max-width: 950px;
+  margin: 2rem auto;
+  padding: 0 1rem;
   box-sizing: border-box;
 }
-
-body {
-  margin: 0;
-  background: #f4f3ef;
-  color: #111;
-  font-family: Arial, sans-serif;
+.gameControls {
+  margin-top: 1rem;
 }
 
-.card {
+.gameLayout {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 8px 12px;
-  background: #e9e8e2;
-  border: 2px solid #222;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
 }
 
-.text {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #111;
-  text-transform: uppercase;
+.gameLayout .referenceImage {
+  flex: 0 0 140px;
+  order: -1;
 }
 
-.buttons-above {
+.gameLayout .boardWrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 0 8px;
+  }
+
+  .gameLayout {
+    gap: 8px;
+  }
+
+  .gameLayout .referenceImage {
+    flex-basis: 90px;
+  }
+}
+.gameLayout {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 12px;
 }
 
-.timer,
-.moves {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 8px;
-  background: #fff;
-  border: 1px solid #222;
-  font-size: .85rem;
-  font-weight: 600;
+.gameLayout .referenceImage {
+  flex: 0 0 100px;
 }
 
-.tabular-nums,
-.tab-nums {
-  font-family: "Courier New", monospace;
-  font-variant-numeric: tabular-nums;
+.gameLayout .boardWrapper {
+  flex: 1;
+  min-width: 0;
 }
 
-.text-400-a,
-.text-400-b {
-  display: inline-flex;
-  align-items: center;
-  color: #111;
-}
+@media (max-width: 600px) {
+  .gameLayout {
+    gap: 6px;
+  }
 
-.icon-btn,
-.restart {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 28px;
-  height: 28px;
-  padding: 2px 6px;
-  background: #e9e8e2;
-  color: #111;
-  border: 1px solid #222;
-  cursor: pointer;
+  .gameLayout .referenceImage {
+    flex-basis: 75px;
+  }
 }
-
-.icon-btn:hover,
-.restart:hover {
-  background: #dddcd5;
-}
-
-.icon-btn:active,
-.restart:active {
-  background: #ccc;
-  border-color: #000;
-}
-
-.icon-btn:focus-visible,
-.restart:focus-visible {
-  outline: 2px solid #111;
-  outline-offset: 1px;
-}
-

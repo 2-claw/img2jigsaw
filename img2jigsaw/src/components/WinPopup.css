@@ -1,0 +1,95 @@
+.winModal {
+  width: min(90vw, 360px);
+  margin: auto;
+  padding: 0;
+  border: 3px solid #54343b;
+  border-radius: 6px;
+  background: #f5edcf;
+  color: #54343b;
+}
+
+.winModal::backdrop {
+  background: rgba(30, 40, 45, 0.65);
+}
+
+.win_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.trophyBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border: 2px solid #76505a;
+  border-radius: 50%;
+  color: #b87836;
+}
+
+.win-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.winSub {
+  margin: 0;
+  color: #76505a;
+  font-size: 0.95rem;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 12px 8px;
+  background: #fff7df;
+  border: 1px solid #76505a;
+  border-radius: 4px;
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.statLabel {
+  color: #76505a;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.statValue {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.w_px {
+  width: 1px;
+  height: 32px;
+  background: #cbbba0;
+}
+
+.playAgain {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #54343b;
+  border-radius: 4px;
+  background: #d98d91;
+  color: #fff7df;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.playAgain:hover {
+  background: #bd666f;
+}
