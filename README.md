@@ -2,6 +2,15 @@
 
 This is a jigsaw puzzle game I built with React and Vite. You can drop in any photo from your computer or pick one of the preset images, choose a grid size from 3x3 all the way up to 10x10, and then race a timer and move counter to put it back together. I made it to get more comfortable with React state, canvas, and building something that's actually fun to play.
 
+
+## Why I Built This
+
+I wanted a project that would help me to use React properly instead of just following a tutorial. A jigsaw game seemed like a good fit, because it needs state, events, drag and drop, and canvas all in one place.
+
+## Personal
+
+I've always liked puzzles, but I never have the space or the time to set one up on a table. I wanted a version I could play in a few minutes with any photo I chose, like one from my own camera roll. plus it doesnt cost me any money and i can paly any picture i want 
+
 ## Screenshots
 
 ### Image Picker
