@@ -1,77 +1,99 @@
-import { useState } from 'react';
+import { useState } from "react";
 import "./PuzzleBoard.css";
 
-export default function PuzzleBoard({ tiles, gridSize, isComplete, onSwap, onPlayClick, onPlaySnap }) {
-    const [sel, setSel] = useState(-1);
-    const [from, setFrom] = useState(-1);
-    const [over, setOver] = useState(-1);
+function getGap(gridSize) {
+  if (gridSize <= 3) return 6;
+  if (gridSize <= 5) return 4;
+  if (gridSize <= 10) return 2;
+  return 1;
+}
 
-    let gap = 1;
-    if (gridSize <= 10) gap = 2;
-    if (gridSize <= 5) gap = 4;
-    if (gridSize <= 3) gap = 6;
+export default function PuzzleBoard({
+  tiles,
+  targetGroups,
+  gridSize,
+  isComplete,
+  showNumbers,
+  onSwap,
+  onPlayClick,
+  onPlaySnap,
+}) {
+  const [selected, setSelected] = useState(null);
+  const [dragging, setDragging] = useState(null);
+  const [hovering, setHovering] = useState(null);
 
-    function clicked(i) {
-        if (isComplete) return;
-        if (sel === -1) {
-            setSel(i);
-            onPlayClick && onPlayClick();
-            return;
-        }
-        if (sel !== i) {
-            onPlaySnap && onPlaySnap();
-            onSwap(sel, i);
-        }
-        setSel(-1);
+  function isInPlace(tile, position) {
+    return tile.group === targetGroups[position];
+  }
+
+  function swap(a, b) {
+    if (onPlaySnap) onPlaySnap();
+    onSwap(a, b);
+  }
+
+  function handleClick(position) {
+    if (isComplete) return;
+
+    if (selected === null) {
+      setSelected(position);
+      if (onPlayClick) onPlayClick();
+    } else {
+      if (selected !== position) swap(selected, position);
+      setSelected(null);
     }
+  }
 
-    function drop(i) {
-        if (from > -1 && from !== i) {
-            onPlaySnap && onPlaySnap();
-            onSwap(from, i);
-            setSel(-1);
-        }
-        setFrom(-1);
-        setOver(-1);
+  function handleDrop(position) {
+    if (dragging !== null && dragging !== position && !isComplete) {
+      swap(dragging, position);
     }
+    stopDragging();
+    setSelected(null);
+  }
 
-    return (
-        <div className="boardWrapper">
-            <div
-                className="puzzleGrid"
-                style={{
-                    gridTemplateColumns: 'repeat(' + gridSize + ', 1fr)',
-                    gap: gap,
-                    maxWidth: gridSize >= 10 ? 'min(92vw, 640px)' : 500,
-                    aspectRatio: '1 / 1'
-                }}
-            >
-                {tiles.map((t, i) => (
-                    <div
-                        key={t.id}
-                        draggable={!isComplete}
-                        onDragStart={() => setFrom(i)}
-                        onDragEnter={() => setOver(i)}
-                        onDragOver={e => e.preventDefault()}
-                        onDrop={() => drop(i)}
-                        onDragEnd={() => { setFrom(-1); setOver(-1); }}
-                        onClick={() => clicked(i)}
-                        className={
-                            'tile' +
-                            (sel === i ? ' selected' : '') +
-                            (over === i && from !== i ? ' drop-target' : '') +
-                            (t.id === i && !isComplete ? ' correct' : '')
-                        }
-                        style={{
-                            backgroundImage: 'url(' + t.dataUrl + ')',
-                            backgroundSize: 'cover',
-                            aspectRatio: '1 / 1',
-                            opacity: from === i ? 0.5 : 1,
-                            cursor: isComplete ? 'default' : 'pointer'
-                        }}
-                    />
-                ))}
-            </div>
-        </div>
-    );
+  function stopDragging() {
+    setDragging(null);
+    setHovering(null);
+  }
+
+  function getTileClass(tile, position) {
+    const classes = ["tile"];
+    if (selected === position) classes.push("selected");
+    if (hovering === position && dragging !== position) classes.push("drop-target");
+    if (isInPlace(tile, position) && !isComplete) classes.push("correct");
+    return classes.join(" ");
+  }
+
+  return (
+    <div className="boardWrapper">
+      <div
+        className="puzzleGrid"
+        style={{
+          gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
+          gap: getGap(gridSize),
+          maxWidth: gridSize >= 10 ? "min(92vw, 640px)" : 500,
+        }}
+      >
+        {tiles.map((tile, position) => (
+          <div
+            key={tile.id}
+            className={getTileClass(tile, position)}
+            style={{
+              backgroundImage: `url(${tile.dataUrl})`,
+              opacity: dragging === position ? 0.5 : 1,
+            }}
+            draggable={!isComplete}
+            onClick={() => handleClick(position)}
+            onDragStart={() => setDragging(position)}
+            onDragEnter={() => setHovering(position)}
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={() => handleDrop(position)}
+            onDragEnd={stopDragging}
+          >
+            {showNumbers && <span className="tile-number">{tile.id + 1}</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
